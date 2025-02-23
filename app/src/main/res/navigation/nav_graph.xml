@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.yasinyilmaz.movieapp.HomeFragment"
+        android:label="Ana Sayfa" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.yasinyilmaz.movieapp.HistoryFragment"
+        android:label="Geçmiş" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.yasinyilmaz.movieapp.FavoritesFragment"
+        android:label="Favoriler" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.yasinyilmaz.movieapp.ProfileFragment"
+        android:label="Profil" />
+
+</navigation>
