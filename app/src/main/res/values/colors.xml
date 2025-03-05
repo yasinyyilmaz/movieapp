@@ -12,6 +12,7 @@
     <color name="selected_color">#FF6200EE</color> <!-- Bu mor rengi temsil ediyor, değiştir! -->
     <color name="unselected_color">#E0E0E0</color> <!-- Gri veya istediğin başka bir renk olabilir -->
     <color name="red">#FF0000</color>
+    <color name="neon_pink">#FF007F</color>
 
 
 </resources>

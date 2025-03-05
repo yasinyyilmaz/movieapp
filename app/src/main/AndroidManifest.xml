@@ -13,19 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movieapp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".FirstActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Movieapp" />
         <!-- Ana Sayfa (MainActivity) -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/first_screen_gradient_background"
+    android:padding="20dp">
+
+    <!-- VR Görseli -->
+    <ImageView
+        android:id="@+id/vrImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/deadpool"
+        android:scaleType="centerCrop" />
+
+    <!-- Başlık -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch Videos in Virtual Reality"
+        android:textSize="22sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp" />
+
+    <!-- Açıklama Metni -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download and watch offline wherever you are"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="10dp" />
+
+    <!-- Arama Çubuğu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/search_background"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="Aradığın filmi tarif et"
+            android:paddingEnd="10dp"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:hintTextColor="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Ara"
+            android:src="@drawable/ai" />
+    </LinearLayout>
+
+</LinearLayout>
