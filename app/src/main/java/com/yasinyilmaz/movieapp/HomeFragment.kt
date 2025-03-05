@@ -2,7 +2,9 @@ package com.yasinyilmaz.movieapp
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,11 +12,23 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.yasinyilmaz.movieapp.Movie
+import com.yasinyilmaz.movieapp.MovieAdapter
+import com.yasinyilmaz.movieapp.R
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment() {
 
     private lateinit var btnFilm: Button
     private lateinit var btnDizi: Button
+    private lateinit var recyclerView: RecyclerView
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,6 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         btnFilm = view.findViewById(R.id.btnFilm)
         btnDizi = view.findViewById(R.id.btnDizi)
+        recyclerView = view.findViewById(R.id.recyclerViewMovies)
 
         btnFilm.setOnClickListener {
             btnFilm.setBackgroundResource(R.drawable.selected_button_background)
@@ -47,14 +62,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             Movie("Inception", "Bilim Kurgu, Gerilim", 4.7, R.drawable.sample_movie_poster)
         )
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewMovies)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = MovieAdapter(movies)
-
-        // Footer Fragment'ı ekleyelim
-        (activity as MainActivity).loadFragment(FooterFragment())
-
-        // UI gizleme
-        (activity as MainActivity).hideSystemUI()
     }
 }

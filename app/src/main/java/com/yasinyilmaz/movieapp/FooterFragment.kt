@@ -1,69 +1,36 @@
 package com.yasinyilmaz.movieapp
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FooterFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_footer, container, false)
-    }
+class FooterFragment : Fragment(R.layout.fragment_footer) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val iconHome = view.findViewById<ImageView>(R.id.iconHome)
-        val iconClock = view.findViewById<ImageView>(R.id.iconClock)
-        val iconFavorites = view.findViewById<ImageView>(R.id.iconFavorites)
-        val iconProfile = view.findViewById<ImageView>(R.id.iconProfile)
+        val bottomNav = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        // Uygulama ilk açıldığında Home seçili olsun
-        iconHome.setImageResource(R.drawable.ic_home_dark)
-        iconClock.setImageResource(R.drawable.ic_clock)
-        iconFavorites.setImageResource(R.drawable.ic_favorite)
-        iconProfile.setImageResource(R.drawable.ic_profile)
-
-        // Home iconuna tıklanabilirlik ekleyelim
-        iconHome.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-            // Tıklanan iconu değiştirme
-            iconHome.setImageResource(R.drawable.ic_home_dark)
-            iconClock.setImageResource(R.drawable.ic_clock)
-            iconFavorites.setImageResource(R.drawable.ic_favorite)
-            iconProfile.setImageResource(R.drawable.ic_profile)
+        // Varsayılan olarak HomeFragment yüklensin
+        if (savedInstanceState == null) {
+            navigateToFragment(HomeFragment())
         }
 
-        iconClock.setOnClickListener {
-            findNavController().navigate(R.id.historyFragment)
-            iconHome.setImageResource(R.drawable.ic_home)
-            iconClock.setImageResource(R.drawable.ic_clock_dark)
-            iconFavorites.setImageResource(R.drawable.ic_favorite)
-            iconProfile.setImageResource(R.drawable.ic_profile)
-        }
-
-        iconFavorites.setOnClickListener {
-            findNavController().navigate(R.id.favoritesFragment)
-            iconHome.setImageResource(R.drawable.ic_home)
-            iconClock.setImageResource(R.drawable.ic_clock)
-            iconFavorites.setImageResource(R.drawable.ic_favorite_dark)
-            iconProfile.setImageResource(R.drawable.ic_profile)
-        }
-
-        iconProfile.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
-            iconHome.setImageResource(R.drawable.ic_home)
-            iconClock.setImageResource(R.drawable.ic_clock)
-            iconFavorites.setImageResource(R.drawable.ic_favorite)
-            iconProfile.setImageResource(R.drawable.ic_profile_dark)
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> navigateToFragment(HomeFragment())
+                R.id.nav_history -> navigateToFragment(HistoryFragment())
+                R.id.nav_favorites -> navigateToFragment(FavoritesFragment())
+                R.id.nav_profile -> navigateToFragment(ProfileFragment())
+            }
+            true
         }
     }
 
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
 }
